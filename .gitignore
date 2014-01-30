@@ -1,0 +1,10 @@
+pkg
+*.pyc
+*.test
+/bin/*
+dump.rdb
+src/github.com/*
+src/code.google.com/*
+src/launchpad.net/*
+src/labix.org/*
+db/*
