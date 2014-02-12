@@ -74,7 +74,7 @@ func Pearson(p1 map[string]float64, p2 map[string]float64) float64 {
 	numerator := pSum - (sump1 * sump2 / float64(len(common)))
 	denom := math.Sqrt((sump1Sq - math.Pow(sump1, 2)/n) * (sump2Sq - math.Pow(sump2, 2)/n))
 	if denom == 0 {
-		return 0
+		return 1
 	}
 
 	return numerator / denom
