@@ -18,19 +18,26 @@ import (
 // used in optimization problems in which distances only have to be compared.
 // https://en.wikipedia.org/wiki/Euclidean_distance
 func Euclidean(p1 map[string]float64, p2 map[string]float64) float64 {
-	sumSquares := 0.0
-	// find shared items
-	for item, p1Val := range p1 {
-		p2Val, ok := p2[item]
+	// Find common items
+	common := map[string]bool{}
+	for item, _ := range p1 {
+		_, ok := p2[item]
 		if ok {
-			// Add up the squares of all the differences
-			sumSquares += math.Pow(p1Val-p2Val, 2)
+			common[item] = true
 		}
 	}
+	n := float64(len(common))
 
-	// No similar items
-	if sumSquares == 0 {
-		return sumSquares
+	// Nothing in common
+	if n == 0 {
+		return 0
+	}
+
+	sumSquares := 0.0
+	// find shared items
+	for item, _ := range common {
+		// Add up the squares of all the differences
+		sumSquares += math.Pow(p1[item]-p2[item], 2)
 	}
 
 	// Prevent division by zero by adding 1
